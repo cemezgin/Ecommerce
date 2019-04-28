@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Doc</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>API</th>
+            <th>Description</th>
+            <th>Request Body</th>
+            <th>Response Body</th>
+        </tr>
+        <tr>
+            <td>GET /api/Cart</td>
+            <td>Get all cart items <br> with total amount</td>
+            <td>none</td>
+            <td>Array of cart items and <br> total amount variable</td>
+        </tr>
+        <tr>
+            <td>POST /api/Cart</td>
+            <td>Add product to <br>shopping cart</td>
+            <td>
+                {"productId": id(int)}
+            </td>
+            <td>Array of cart items and <br>total amount variable</td>
+        </tr>        
+    </table>
+</body>
