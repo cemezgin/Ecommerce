@@ -2,54 +2,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using ECommerce.Data;
+using ECommerce.Repository;
 using ECommerce.Models;
 
 namespace ECommerce.Services
 {
     public class CartService : ICartService
     {        
-        private readonly ICartItemContext _context;
+        private readonly ICartItemRepository repository;
 
-        public CartService (ICartItemContext context) 
+        public CartService (ICartItemRepository repository) 
         {
-            _context = context;
+            this.repository = repository;
         }
         
         public List<ShoppingCart> ShoppingCart { get; set; }
 
         public void AddToCart(Product product)
         {
-            var shoppingCartItem = _context.CartItems.Include(s => s.Product).SingleOrDefault(
-                s => s.Product.Id == product.Id
-            );
-
-            if (shoppingCartItem == null) {
-                shoppingCartItem = new CartItem {Product = product};
-                _context.CartItems.Add(shoppingCartItem);
-            } else {
-                shoppingCartItem.Quantity++;
-            }
-
-            if (IsInStock(shoppingCartItem.Product)) {
-                shoppingCartItem.Product.Stock--;
-                _context.SaveChanges();
-            }
+            this.repository.AddToCart(product);
         }
-
-        public List<CartItem> GetShoppingCartItems() =>
-             _context.CartItems.Include(s => s.Product).ToList();
-
-         double GetShoppingCartTotalAmount() => 
-            _context.CartItems.Select(c => c.Product.Price * c.Quantity).Sum();
 
         private bool IsInStock(Product product) => product.Stock == 0 ? false : true;
 
         public List<ShoppingCart> GetShoppingCart() {
             List<ShoppingCart> Cart =  new List<ShoppingCart>() {
                 new ShoppingCart() {
-                    CartItems = GetShoppingCartItems(),
-                    TotalAmount = GetShoppingCartTotalAmount()
+                    CartItems = this.repository.GetShoppingCartItems(),
+                    TotalAmount = this.repository.GetShoppingCartTotalAmount()
                 }
             };
 

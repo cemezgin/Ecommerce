@@ -2,21 +2,26 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using ECommerce.Data;
 using ECommerce.Models;
+using ECommerce.Repository;
 
 namespace ECommerce.Services
 {
     public class ProductService : IProductService
     {        
-        private readonly IProductContext _context;
-        public ProductService (IProductContext context) 
+        private readonly IProductRepository repository;
+        public ProductService (IProductRepository repository) 
         {
-            _context = context;
-            new FeedProduct(context);
+            this.repository = repository;
+            new FeedProduct(repository);
         }
 
         public Product Get(CartItem item) => 
-            _context.Products.FirstOrDefault(p => p.Id == item.ProductId);
+             this.repository.Get(item);
+        
+        public void Insert(Product product)
+        {
+             this.repository.Insert(product);
+        }
     }
 }

@@ -13,6 +13,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using ECommerce.Models;
 using ECommerce.Services;
+using ECommerce.Repository;
 using ECommerce.Data;
 
 namespace ECommerce
@@ -33,8 +34,8 @@ namespace ECommerce
             services.AddDbContext<CartItemContext>(opt => opt.UseInMemoryDatabase("CartItem"));
             services.AddScoped<ICartService,CartService>();
             services.AddScoped<IProductService,ProductService>();
-            services.AddScoped<IProductContext,ProductContext>();
-            services.AddScoped<ICartItemContext,CartItemContext>();
+            services.AddScoped<IProductRepository,ProductRepostitory>();
+            services.AddScoped<ICartItemRepository,CartItemRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddMemoryCache();
         }

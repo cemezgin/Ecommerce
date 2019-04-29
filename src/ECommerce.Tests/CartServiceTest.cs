@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using ECommerce.Controllers;
 using ECommerce.Services;
 using ECommerce.Models;
-using ECommerce.Data;
+using ECommerce.Repository;
 using Xunit;
 using Moq;
 using System;
@@ -13,8 +13,8 @@ public class CartServiceTest
     CartService _service;
     public CartServiceTest()
     {
-        var itemContext = new Mock<ICartItemContext>();
-        _service = new CartService(itemContext.Object);
+        var itemRepository = new Mock<ICartItemRepository>();
+        _service = new CartService(itemRepository.Object);
     }
 
     [Fact]
