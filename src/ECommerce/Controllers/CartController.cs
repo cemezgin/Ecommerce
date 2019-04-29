@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace ECommerce.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]s")]
     [ApiController]
     public class CartController : Controller
     {
@@ -24,14 +24,14 @@ namespace ECommerce.Controllers
             _cartService = cartService;
         }
 
-        //  GET: api/Cart
+        //  GET: api/carts
         [HttpGet]
         public ActionResult<List<CartItem>> GetCartItems()
         {
             return Ok(_cartService.GetShoppingCart());
         }
 
-        // POST: api/Cart
+        // POST: api/carts
         [HttpPost]
         public ActionResult PostCartItem([Bind("ProductId")] CartItem item)
         {
@@ -45,7 +45,7 @@ namespace ECommerce.Controllers
                 _cartService.AddToCart(selectedProduct);
             }
 
-            return RedirectToAction("GetCartItems");
+            return CreatedAtAction("GetCartItems", _cartService.GetShoppingCart());
         }
     }
 }

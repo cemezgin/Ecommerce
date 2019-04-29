@@ -56,6 +56,6 @@ public class CartControllerTest
         var createdResponse = _controller.PostCartItem(testItem);
     
         // Assert
-        Assert.IsType<RedirectToActionResult>(createdResponse);
+        Assert.IsType<CreatedAtActionResult>(createdResponse);
     }
 }
