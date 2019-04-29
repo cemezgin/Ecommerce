@@ -37,7 +37,7 @@ namespace ECommerce.Repository {
         public List<CartItem> GetShoppingCartItems() =>
              cartItemContext.CartItems.Include(s => s.Product).ToList();
 
-         public double GetShoppingCartTotalAmount() => 
+        public double GetShoppingCartTotalAmount() => 
             cartItemContext.CartItems.Select(c => c.Product.Price * c.Quantity).Sum();
 
         private bool IsInStock(Product product) => product.Stock == 0 ? false : true;

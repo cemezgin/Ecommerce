@@ -18,12 +18,12 @@ namespace ECommerce.Repository {
         public List<Product> Get() => 
             productContext.Products.ToList();
 
-         public void Insert(Product product)
+        public void Insert(Product product)
         {
              productContext.Products.Add(product);
         }
 
-         public void Save()
+        public void Save()
         {
             productContext.SaveChanges();
         }
