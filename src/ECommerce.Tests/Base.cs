@@ -18,7 +18,7 @@ public class Base {
     {
         var cartItem = new List<CartItem>() {
             new CartItem {
-                    CartItemId = 1,
+                    Id = 1,
                     Product = GetMockProduct(),
                     ProductId = 1
                 }
