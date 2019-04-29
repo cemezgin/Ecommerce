@@ -13,22 +13,22 @@ namespace ECommerce.Controllers
     [ApiController]
     public class CartController : Controller
     {
-        private readonly IProductService _productService;
-        private readonly ICartService _cartService;
+        private readonly IProductService productService;
+        private readonly ICartService cartService;
         
         public CartController(
             IProductService productService,
             ICartService cartService
         ) {
-            _productService = productService;
-            _cartService = cartService;
+            this.productService = productService;
+            this.cartService = cartService;
         }
 
         //  GET: api/carts
         [HttpGet]
         public ActionResult<List<CartItem>> GetCartItems()
         {
-            return Ok(_cartService.GetShoppingCart());
+            return Ok(this.cartService.GetShoppingCart());
         }
 
         // POST: api/carts
@@ -40,12 +40,12 @@ namespace ECommerce.Controllers
                 return BadRequest(ModelState);
             }
             
-            var selectedProduct = _productService.Get(item);
+            var selectedProduct = this.productService.Get(item);
             if (selectedProduct != null) {
-                _cartService.AddToCart(selectedProduct);
+                this.cartService.AddToCart(selectedProduct);
             }
 
-            return CreatedAtAction("GetCartItems", _cartService.GetShoppingCart());
+            return CreatedAtAction("GetCartItems", this.cartService.GetShoppingCart());
         }
     }
 }
