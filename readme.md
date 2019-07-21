@@ -15,7 +15,7 @@
             <td>[GET] /api/carts</td>
             <td>Get all cart items <br> with total amount</td>
             <td>none</td>
-            <td>Array of cart items and <br> total amount variable (200 Ok)</td>
+            <td>Array of cart items and <br> total amount variable (200 OK)</td>
         </tr>
         <tr>
             <td>[POST] /api/carts</td>
