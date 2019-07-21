@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>API Doc</title>
+    <b>API Doc</b>
 </head>
 <body>
     <table>
