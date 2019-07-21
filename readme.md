@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <b>API Doc</b><br>
+    <b>API Doc</b><br><br>
 </head>
 <body>
     <table>
@@ -21,8 +21,8 @@
             <td>POST /api/carts</td>
             <td>Add product to <br>shopping cart</td>
             <td>
-                {
-                    "productId": id(int)
+                {<br>
+                    "productId": id(int)<br>
                 }
             </td>
             <td>Array of cart items and <br>total amount variable (201 Created)</td>
